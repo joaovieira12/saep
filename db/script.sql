@@ -1,14 +1,10 @@
--- =========================================================
--- Banco de Dados: Sistema de Controle de Almoxarifado
--- =========================================================
+
 
 DROP DATABASE IF EXISTS db_almoxarifado;
 CREATE DATABASE db_almoxarifado;
 USE db_almoxarifado;
 
--- =========================================================
--- TABELA: categoria
--- =========================================================
+
 CREATE TABLE categoria (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -16,9 +12,7 @@ CREATE TABLE categoria (
     nivel_maximo INT NOT NULL DEFAULT 100
 );
 
--- =========================================================
--- TABELA: produto
--- =========================================================
+
 CREATE TABLE produto (
     id_produto INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(150) NOT NULL,
@@ -30,9 +24,7 @@ CREATE TABLE produto (
         FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
 );
 
--- =========================================================
--- TABELA: movimentacao
--- =========================================================
+
 CREATE TABLE movimentacao (
     id_movimentacao INT AUTO_INCREMENT PRIMARY KEY,
     id_produto INT NOT NULL,
@@ -46,9 +38,7 @@ CREATE TABLE movimentacao (
         FOREIGN KEY (id_produto) REFERENCES produto(id_produto)
 );
 
--- =========================================================
--- VIEW: vw_estoque
--- =========================================================
+
 CREATE VIEW vw_estoque AS
 SELECT
     p.id_produto,
@@ -58,9 +48,6 @@ SELECT
     (p.quantidade * p.valor_unitario) AS valor_total
 FROM produto p;
 
--- =========================================================
--- REGISTROS (mínimo 3 por tabela)
--- =========================================================
 INSERT INTO categoria (nome, nivel_minimo, nivel_maximo) VALUES
 ('Limpeza Geral', 10, 100),
 ('Higiene Pessoal', 5, 80),
