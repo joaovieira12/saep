@@ -66,7 +66,6 @@ async function registrarMovimentacao(req, res) {
     }
 }
 
-// Listar todas as saídas de produtos, ordenadas por data decrescente
 async function listarSaidas(req, res) {
     try {
         const [rows] = await pool.query(
@@ -87,7 +86,6 @@ async function listarSaidas(req, res) {
     }
 }
 
-// Listar movimentações de entrada e saída no período informado
 async function listarMovimentacoesPorPeriodo(req, res) {
     const { data_inicial, data_final } = req.query;
 
@@ -123,7 +121,6 @@ async function listarMovimentacoesPorPeriodo(req, res) {
     }
 }
 
-// Listar produtos com maior volume de saída no período informado
 async function listarMaiorVolumeSaida(req, res) {
     const { data_inicial, data_final } = req.query;
 
